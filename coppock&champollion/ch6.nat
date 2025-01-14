@@ -103,9 +103,6 @@ let does = x => x;
 
 // negation.
 
-let not' = (p: e -> t) => (x => !p(x))
-         | (p: t) => !p;
-
 // quantifiers.
 
 let everybody: (e -> t) -> t = p => for all (x in e) p(x);
@@ -183,8 +180,6 @@ typecheck(ex9);
 let ex10 = [Frida [is' [a [norwegian millionaire]]]];
 Grammar.typefail(ex10);
 
-let ex11 = [Bjorn [is' [not' kind]]];
-typecheck(ex11);
 
 let ex12 = [[every singer] smiled];
 typecheck(ex12);
@@ -215,7 +210,3 @@ typecheck(ex20);
 
 let ex21 = [Agnetha [likes nobody]];
 typecheck(ex21);
-
-let like = likes,
-    ex22 = [Agnetha [does [not' [like everybody]]]];
-typecheck(ex22);

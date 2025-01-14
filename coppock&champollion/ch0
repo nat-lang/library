@@ -1,0 +1,120 @@
+
+// constants.
+
+const Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel;
+
+// types.
+
+dom e = {Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel};
+dom t = {true, false};
+
+bool = t;
+
+// common nouns.
+
+let Singer = {};
+let singer: e -> t = x => x in Singer;
+
+let Millionaire = {};
+let millionaire: e -> t = x => x in Millionaire;
+
+let Norwegian = {};
+let norwegian: e -> t = x => x in Norwegian;
+
+// intransitive verbs.
+
+let Smile = {};
+let smiled: e -> t = x => x in Smile;
+
+// transitive verbs.
+
+let Love = {(Agnetha, Agnetha)};
+let loves: e -> e -> t = x y => (x,y) in Love;
+
+let Shave = {};
+let shaves: e -> e -> t = x y => (x,y) in Shave;
+
+// ditransitive verbs.
+
+let Introduce = {};
+let introduced: e -> e -> e -> t = x y z => (x,y,z) in Introduce;
+
+// prepositions.
+
+let to : e -> (e -> e -> t) -> e -> t
+       = x p y => p(x)(y);
+
+let self1 : (e -> e -> t) -> e -> t
+          = p x => p(x)(x);
+
+let self2 : (e -> e -> e -> t) -> e -> e -> t
+          = p x y => p(x)(y)(y);
+
+let self3 : (e -> e -> e -> t) -> e -> e -> t
+          = p x y => p(x)(y)(x);
+
+let With = {};
+let with: e -> e -> t = x y => (x,y) in With;
+
+let of: e -> e = x => x;
+
+// 1-place adjectives.
+
+let Kind = {};
+let kind: e -> t = x => x in Kind;
+
+let Snore = {};
+let snores: e -> t = x => x in Snore;
+
+// 2-place adjectives.
+
+let Proud = {};
+let proud: e -> e -> t = x y => (x,y) in Proud;
+
+let Hug = {};
+let hugged: e -> e -> t = x y => (x,y) in Hug;
+
+let Afraid = {};
+let afraid: e -> e -> t = x y => (x,y) in Afraid;
+
+// copula.
+
+let is': (e -> t) -> e -> t = p => p;
+
+// negation.
+// quantifiers.
+
+let everybody: (e -> t) -> t = p => e.each(p);
+let somebody: (e -> t) -> t = p => e.some(p);
+let nobody: (e -> t) -> t = p => !e.some(p);
+
+// determiners.
+
+let a: (e -> t) -> e -> t = p => p;
+let some: (e -> t) -> (e -> t) -> t = p q => e.some(x => p(x) and q(x));
+let no: (e -> t) -> (e -> t) -> t = p q => !e.some(x => p(x) and q(x));
+let every: (e -> t) -> (e -> t) -> t = p q => e.each(x => !p(x) or q(x));
+
+// composition rules.
+
+let NonBranchingNodes = x => x;
+
+let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
+
+let QuantificationalObject
+  = (r: (e -> e -> t), q: (e -> t) -> t) => (x => q(z => r(z)(x)))
+  | (q: (e -> t) -> t, r: (e -> e -> t)) => (x => q(z => r(z)(x)));
+
+Grammar.addRules(
+  FunctionApplication,
+  NonBranchingNodes,
+  QuantificationalObject
+);
+
+// examples.
+
+let ex0 = [Agnetha smiled];
+Grammar.typecheck(ex0);
+
+let ex1 = [Agnetha [loves Bjorn]];
+Grammar.typecheck(ex1);

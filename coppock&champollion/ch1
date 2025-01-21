@@ -1,11 +1,11 @@
 
 // constants.
 
-const Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel;
+const Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel, Ursula, Sebastian, Sam;
 
 // types.
 
-dom e = {Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel};
+dom e = {Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel, Ursula, Sebastian, Sam};
 dom t = {true, false};
 
 bool = t;
@@ -21,18 +21,37 @@ let millionaire: e -> t = x => x in Millionaire;
 let Norwegian = {};
 let norwegian: e -> t = x => x in Norwegian;
 
+let Guy = {};
+let guy: e -> t = x => x in Guy;
+
 // intransitive verbs.
 
 let Smile = {};
 let smiled: e -> t = x => x in Smile;
 
+let Smoke = {};
+let smokes: e -> t = x => x in Smoke;
+
+let Drink = {};
+let drinks: e -> t = x => x in Drink;
+
 // transitive verbs.
+
+// fixme.
+// let TransitiveVerb
+//   : {(e,e)} -> e -> e -> t
+//   = relation x y => (x,y) in relation;
+// let Love = {(Agnetha, Agnetha)};
+// let loves = TransitiveVerb(Love);
 
 let Love = {(Agnetha, Agnetha)};
 let loves: e -> e -> t = x y => (x,y) in Love;
 
 let Shave = {};
 let shaves: e -> e -> t = x y => (x,y) in Shave;
+
+let Like = {(Agnetha, Agnetha)};
+let likes: e -> e -> t = x y => (x,y) in Like;
 
 // ditransitive verbs.
 
@@ -80,20 +99,33 @@ let afraid: e -> e -> t = x y => (x,y) in Afraid;
 // copula.
 
 let is': (e -> t) -> e -> t = p => p;
+let does = x => x;
 
 // negation.
+
 // quantifiers.
 
-let everybody: (e -> t) -> t = p => e.each(p);
-let somebody: (e -> t) -> t = p => e.some(p);
-let nobody: (e -> t) -> t = p => !e.some(p);
+let everybody: (e -> t) -> t = p => for all (x in e) p(x);
+let somebody: (e -> t) -> t = p => for some (x in e) p(x);
+let nobody: (e -> t) -> t = p => for no (x in e) p(x);
 
 // determiners.
 
-let a: (e -> t) -> e -> t = p => p;
-let some: (e -> t) -> (e -> t) -> t = p q => e.some(x => p(x) and q(x));
-let no: (e -> t) -> (e -> t) -> t = p q => !e.some(x => p(x) and q(x));
-let every: (e -> t) -> (e -> t) -> t = p q => e.each(x => !p(x) or q(x));
+let a : (e -> t) -> e -> t
+      = p => p;
+
+let some : (e -> t) -> (e -> t) -> t
+         = p q => for some (x in e) p(x) and q(x);
+
+let no : (e -> t) -> (e -> t) -> t
+       = p q => for no (x in e) p(x) and q(x);
+
+let every : (e -> t) -> (e -> t) -> t
+          = p q => for all (x in e) !p(x) or q(x);
+
+// coordination.
+
+let or': (e -> t) -> (e -> t) -> (e -> t) = p q x => p(x) or q(x);
 
 // composition rules.
 
@@ -113,7 +145,56 @@ Grammar.addRules(
 
 // examples.
 
+let typecheck = Grammar.typecheck;
+
 let ex0 = Grammar.type([Agnetha smiled]);
 
 let ex1 = Grammar.type([Agnetha [loves Bjorn]]);
 
+let ex2 = Grammar.type([Benny [[introduced Agnetha] [to Bjorn]]]);
+
+let ex3 = Grammar.type([Carlos [self1 shaves]]);
+
+let ex4 = Grammar.type([Carlos [[self2 introduced] Paco]]);
+
+let ex5 = Grammar.type([Carlos [[self3 introduced] Paco]]);
+
+let ex6 = Grammar.type([Bjorn [is' kind]]);
+
+let ex7 = Grammar.type([Frida [is' [with Benny]]]);
+
+let ex8 = Grammar.type([Benny [is' [proud [of Frida]]]]);
+
+let ex9 = Grammar.type([Agnetha [is' [a singer]]]);
+
+let ex10 = Grammar.type([Frida [is' [a [norwegian millionaire]]]]);
+
+let ex12 = [[every singer] smiled];
+typecheck(ex12);
+
+let ex13 = [[a singer] smiled];
+Grammar.typefail(ex13);
+
+let ex14 = [everybody snores];
+typecheck(ex14);
+
+let ex15 = [somebody [hugged Ariel]];
+typecheck(ex15);
+
+let ex16 = [everybody [is' [afraid [of Ariel]]]];
+typecheck(ex16);
+
+let ex17 = [nobody [likes Ursula]];
+typecheck(ex17);
+
+let ex18 = [[some guy] [hugged Sebastian]];
+typecheck(ex18);
+
+let ex19 = [Sam [smokes [or' drinks]]];
+typecheck(ex19);
+
+let ex20 = [everybody [smokes [or' drinks]]];
+typecheck(ex20);
+
+let ex21 = [Agnetha [likes nobody]];
+typecheck(ex21);

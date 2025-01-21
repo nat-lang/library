@@ -169,32 +169,22 @@ let ex9 = Grammar.type([Agnetha [is' [a singer]]]);
 
 let ex10 = Grammar.type([Frida [is' [a [norwegian millionaire]]]]);
 
-let ex12 = [[every singer] smiled];
-typecheck(ex12);
+let ex12 = Grammar.type([[every singer] smiled]);
 
-let ex13 = [[a singer] smiled];
-Grammar.typefail(ex13);
+let ex13 = Grammar.type([[a singer] smiled]);
 
-let ex14 = [everybody snores];
-typecheck(ex14);
+let ex14 = Grammar.type([everybody snores]);
 
-let ex15 = [somebody [hugged Ariel]];
-typecheck(ex15);
+let ex15 = Grammar.type([somebody [hugged Ariel]]);
 
-let ex16 = [everybody [is' [afraid [of Ariel]]]];
-typecheck(ex16);
+let ex16 = Grammar.type([everybody [is' [afraid [of Ariel]]]]);
 
-let ex17 = [nobody [likes Ursula]];
-typecheck(ex17);
+let ex17 = Grammar.type([nobody [likes Ursula]]);
 
-let ex18 = [[some guy] [hugged Sebastian]];
-typecheck(ex18);
+let ex18 = Grammar.type([[some guy] [hugged Sebastian]]);
 
-let ex19 = [Sam [smokes [or' drinks]]];
-typecheck(ex19);
+let ex19 = Grammar.type([Sam [smokes [or' drinks]]]);
 
-let ex20 = [everybody [smokes [or' drinks]]];
-typecheck(ex20);
+let ex20 = Grammar.type([everybody [smokes [or' drinks]]]);
 
-let ex21 = [Agnetha [likes nobody]];
-typecheck(ex21);
+let ex21 = Grammar.type([Agnetha [likes nobody]]);

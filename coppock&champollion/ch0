@@ -105,7 +105,7 @@ let QuantificationalObject
   = (r: (e -> e -> t), q: (e -> t) -> t) => (x => q(z => r(z)(x)))
   | (q: (e -> t) -> t, r: (e -> e -> t)) => (x => q(z => r(z)(x)));
 
-Grammar.addRules(
+grammar.addRules(
   FunctionApplication,
   NonBranchingNodes,
   QuantificationalObject

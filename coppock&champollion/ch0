@@ -4,12 +4,7 @@ import prelude
 
 const Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel;
 
-// types.
-
 dom e = {Agnetha, Bjorn, Benny, Carlos, Paco, Frida, Ariel};
-dom t = {true, false};
-
-bool = t;
 
 // common nouns.
 

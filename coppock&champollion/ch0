@@ -98,19 +98,11 @@ let every: (e -> t) -> (e -> t) -> t = p q => e.each(x => !p(x) or q(x));
 
 // composition rules.
 
-let NonBranchingNodes = x => x;
-
-let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
-
 let QuantificationalObject
   = (r: (e -> e -> t), q: (e -> t) -> t) => (x => q(z => r(z)(x)))
   | (q: (e -> t) -> t, r: (e -> e -> t)) => (x => q(z => r(z)(x)));
 
-grammar.addRules(
-  FunctionApplication,
-  NonBranchingNodes,
-  QuantificationalObject
-);
+grammar.addRules(QuantificationalObject);
 
 // examples.
 

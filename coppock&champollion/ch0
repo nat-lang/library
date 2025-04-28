@@ -113,8 +113,7 @@ grammar.addRules(
 
 // examples.
 
-let ex0 = Grammar.type([Agnetha smiled]);
+let ex0 = grammar.type([Agnetha smiled]);
 
-
-let ex1 = Grammar.type([Agnetha [loves Bjorn]]);
+let ex1 = grammar.type([Agnetha [loves Bjorn]]);
 

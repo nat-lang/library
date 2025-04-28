@@ -23,7 +23,7 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication, NonBranchingNodes);
 
-doument.setPreamble("
+document.setPreamble("
 \documentclass{article}
 \usepackage{stmaryrd}
 \usepackage{amsmath}

@@ -6,9 +6,9 @@ dom t = {true, false};
 // boolean type [bool] now has an extension.
 bool = t;
 
-// Define the [Grammar] object, which will keep
+// Define the [grammar] object, which will keep
 // track of our composition rules and lexical entries.
-let Grammar = CompositionSystem();
+let grammar = CompositionSystem();
 
 // Define some basic composition rules.
 
@@ -21,6 +21,19 @@ let NonBranchingNodes = x => x;
 // The pipe syntax '|' is used to define type driven application.
 let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
-Grammar.addRules(FunctionApplication, NonBranchingNodes);
+grammar.addRules(FunctionApplication, NonBranchingNodes);
 
-let prefix ex = example => Grammar.type(example);
+doument.setPreamble("
+\documentclass{article}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage[linguistics]{forest}
+\usepackage{MnSymbol}
+\usepackage{gb4e}
+");
+
+let prefix ex = tree => {
+  let typedTree = grammar.evaluate(tree);
+  document.add(typedTree.tex());
+};

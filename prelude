@@ -23,7 +23,7 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication, NonBranchingNodes);
 
-document.setPreamble("
+document.preamble = "
 \documentclass{article}
 \usepackage{stmaryrd}
 \usepackage{amsmath}
@@ -31,7 +31,7 @@ document.setPreamble("
 \usepackage[linguistics]{forest}
 \usepackage{MnSymbol}
 \usepackage{gb4e}
-");
+";
 
 let prefix ex = tree => {
   let typedTree = grammar.evaluate(tree);

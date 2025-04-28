@@ -23,6 +23,7 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication, NonBranchingNodes);
 
+// Set the preamble for the global latex document.
 document.preamble = "
 \documentclass{article}
 \usepackage{stmaryrd}
@@ -33,6 +34,8 @@ document.preamble = "
 \usepackage{gb4e}
 ";
 
+// Define a handy prefix function for (a) evaluating and (b)
+// adding examples to the latex document.
 let prefix ex = tree => {
   let typedTree = grammar.evaluate(tree);
   document.add(typedTree);

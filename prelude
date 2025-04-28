@@ -22,3 +22,5 @@ let NonBranchingNodes = x => x;
 let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 Grammar.addRules(FunctionApplication, NonBranchingNodes);
+
+let prefix ex = example => Grammar.type(example);

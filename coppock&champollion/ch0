@@ -143,25 +143,14 @@ ex [Bjorn [is' kind]];
 ex [Frida [is' [with Benny]]];
 ex [Benny [is' [proud [of Frida]]]];
 ex [Agnetha [is' [a singer]]];
-
 ex [Frida [is' [a [norwegian millionaire]]]];
-
 ex [[every singer] smiled];
-
 ex [[a singer] smiled];
-
 ex [everybody snores];
-
 ex [somebody [hugged Ariel]];
-
 ex [everybody [is' [afraid [of Ariel]]]];
-
 ex [nobody [likes Ursula]];
-
 ex [[some guy] [hugged Sebastian]];
-
 ex [Sam [smokes [or' drinks]]];
-
 ex [everybody [smokes [or' drinks]]];
-
 ex [Agnetha [likes nobody]];

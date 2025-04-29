@@ -125,23 +125,14 @@ let or': (e -> t) -> (e -> t) -> (e -> t) = p q x => p(x) or q(x);
 
 // composition rules.
 
-let NonBranchingNodes = x => x;
-
-let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
-
 let QuantificationalObject
   = (r: (e -> e -> t), q: (e -> t) -> t) => (x => q(z => r(z)(x)))
   | (q: (e -> t) -> t, r: (e -> e -> t)) => (x => q(z => r(z)(x)));
 
-Grammar.addRules(
-  FunctionApplication,
-  NonBranchingNodes,
-  QuantificationalObject
-);
+grammar.addRules(QuantificationalObject);
 
 // examples.
 
-let typecheck = Grammar.typecheck;
 ex [Agnetha smiled];
 ex [Agnetha [loves Bjorn]];
 ex [Benny [[introduced Agnetha] [to Bjorn]]];

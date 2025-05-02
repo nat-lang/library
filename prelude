@@ -38,5 +38,5 @@ document.preamble = "
 // adding examples to the latex document.
 let prefix ex = tree => {
   let typedTree = grammar.evaluate(tree);
-  document.add(typedTree);
+  document.add(typedTree.tex());
 };

@@ -1,45 +1,16 @@
 
-// The universe.
+import prelude
 
-const Katy, Perry, Mick, Jagger;
+let S = TSet;
 
-dom e = {Katy, Perry, Mick, Jagger};
-dom t = {true, false};
+const John, Mary;
+let human = {John, Mary, Fabian};
 
-let Linguist = {Perry, Jagger};
-let Met = {(Katy, Jagger), (Perry, Mick)};
+let eta: u -> S(u) = a => ({a});
+let who: (e -> S(t)) -> S(t) = f p => for some (x in human) f(x)(p);
+let did = x => x;
 
-// Type constructor for characteristic
-// function of a set of x's.
+let Meet = {(John, Mary), (Mary, John)};
+let meet = x y => (x,y) in Meet;
 
-let S = x => x -> t;
-
-// Type shifters. The Grammar already has
-// function application, predicate modification,
-// and predicate abstraction.
-
-let +wh : ((e -> t) -> t) -> (e -> S(t)) -> S(t)
-        = q f p => q(x => p in f(x));
-
-// Here 'v' and 'w' are type variables.
-
-let unit: v -> S(v) = x y => x == y;
-
-print TypeSystem.type(unit).str();
-
-let infix >>= : (S(v), (v -> S(w))) -> S(w)
-              = (m, f) => union({f(x) | x in m});
-
-let lower : S(t) -> t
-          = m => true in m;
-
-Grammar.addRules(unit, >>=);
-
-// Lexical denotations.
-
-let a-linguist = {x | x in Linguist};
-let met = x y f => f(x)(y) == (x,y) in Met;
-
-// Examples.
-
-let ex0 = [[a-linguist] [1 ]];
+ex [who [did [John meet]]];

@@ -3,8 +3,10 @@ import prelude
 
 let S = TSet;
 
-const John, Mary;
+const John, Mary, Fabian;
 let human = {John, Mary, Fabian};
+
+dom e = {John, Mary, Fabian};
 
 let eta: u -> S(u) = a => ({a});
 let who: (e -> S(t)) -> S(t) = f p => for some (x in human) f(x)(p);
@@ -13,4 +15,10 @@ let did = x => x;
 let Meet = {(John, Mary), (Mary, John)};
 let meet = x y => (x,y) in Meet;
 
-ex [who [did [John meet]]];
+let g = {};
+let PronounsAndTraces = (index: num) => g(index);
+let PredicateAbstraction = index expr => {
+
+grammar.addRule(eta);
+
+ex [who [did [John [meet 1]]]];

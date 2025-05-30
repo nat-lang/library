@@ -1,0 +1,20 @@
+import prelude
+
+const Kilroy, Kiljoy;
+dom e = {Kilroy, Kiljoy};
+
+let g: num -> e = {1: Kilroy};
+
+let PronounsAndTraces = (index: num) => g(index);
+let PredicateAbstraction = index expr => { };
+
+grammar.addRules(PronounsAndTraces, PredicateAbstraction);
+
+let pronoun = index => index;
+
+let Left = {Kilroy, Kiljoy};
+let left: e -> t = x => x in Left;
+
+let he = pronoun;
+
+ex [he(1) left];

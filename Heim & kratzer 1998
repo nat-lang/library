@@ -3,12 +3,11 @@ import prelude
 const Kilroy, Kiljoy;
 dom e = {Kilroy, Kiljoy};
 
-let g: num -> e = {1: Kilroy};
+let g: num -> e = 1 => Kilroy;
 
-let PronounsAndTraces = (index: num) => g(index);
-let PredicateAbstraction = index expr => { };
+let PronounsAndTraces = (index: num) => g(index) | _ => undefined;
 
-grammar.addRules(PronounsAndTraces, PredicateAbstraction);
+grammar.addRules(PronounsAndTraces);
 
 let pronoun = index => index;
 

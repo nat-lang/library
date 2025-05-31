@@ -1,0 +1,102 @@
+
+class CompositionError extends Error {}
+
+class AnnotatedTree extends Tree {
+  init(data, children, type: Type) => {
+    super.init(data, children);
+    this.type = type;
+  }
+  str() => {
+    if (this.type)
+      return this.type.str();
+    return "";
+  }
+
+  innerTex() => {
+    let datum = () => {
+      if (this.data == nil) return "";
+
+      let type = TypeSystem.type(this.data);
+
+      if (vType(this.data) in [OFunction, OOverload]) {
+        let ast <- this.data;
+        ast = ast.simplify();
+        let tex = "$#{type.tex()}$ \\ $#{ast.tex()}$";
+
+        if (this.leaf())
+          return "{#{tex} \\ #{this.data.name}}";
+        return "{#{tex}}";
+      }
+
+      return "{$#{type.tex()}$ \\ #{this.data}}";
+    };
+
+    if (this.leaf()) return "[#{datum()}]";
+
+    let children = join(this.children.map(x => x.innerTex()), " ");
+    return "[#{datum()} #{children}]";
+  }
+
+  tex() => "\begin{exe} \ex \[ \begin{forest} #{this.innerTex()} \end{forest} \] \end{exe}";
+}
+
+class CompositionSystem {
+  init() => {
+    this.binaryRules = [];
+    this.unaryRules = [];
+  }
+
+  addRule(rule) => {
+    if (rule.arity == 1)
+      this.unaryRules.add(rule);
+    else if (rule.arity == 2)
+      this.binaryRules.add(rule);
+    else
+      throw CompositionError("Rule must be unary or binary.");
+  }
+
+  addRules(*rules) => {
+    for (rule in rules)
+      this.addRule(rule);
+  }
+
+  // Map a Tree into an AnnotatedTree.
+  evaluate(node: Tree) => {
+    if (node.leaf()) {
+      for (rule in this.unaryRules) {
+        let data = rule(node.data);
+        if (data)
+          return AnnotatedTree(data, [], TypeSystem.type(data));
+      }
+        
+      return AnnotatedTree(node.data, [], TypeSystem.type(node.data));
+    }
+
+
+    if (node.unary()) {
+      let child = this.evaluate(node[0]);
+      for (rule in this.unaryRules) {
+        let data = rule(node.data);
+        if (data)
+          return AnnotatedTree(data, [child], TypeSystem.type(data));
+      }
+      return AnnotatedTree(child.data, [child], child.type);
+    }
+
+    if (node.binary()) {
+      let left = this.evaluate(node[0]),
+          right = this.evaluate(node[1]);
+
+      for (rule in this.binaryRules) {
+        let data = rule(left.data, right.data);
+
+        if (data != undefined)
+          return AnnotatedTree(data, [left, right], TypeSystem.type(data));
+      }
+
+      return AnnotatedTree(node.data, [left, right], nil);
+    }
+
+    throw CompositionError("Nonbinary tree.");
+  }
+}

@@ -5,13 +5,9 @@ dom e = {Kilroy, Kiljoy};
 
 // the type of assignments.
 let a = num -> e;
-// the assignment map.
-let g: a = {1: Kilroy};
 
 let AssSensitiveFunctionApplication = (a: a -> x -> y, b: a -> x) => (g => a(g)(b(g)))
                                     | (a: a -> x, b: a -> x -> y) => (g => b(g)(a(g)));
-
-let TracesAndPronouns = (n: num) => ((g: a) => g(n)) | _ => undefined;
 
 let PredicateAbstraction = (n: num, f: a -> t) => (g x => f(g[n] = x))
                          | (f: a -> t, n: num) => (g x => f(g[n] = x));
@@ -30,6 +26,3 @@ let everyone: a -> (e -> t) -> t = g p => for all (x in e) p(x);
 
 ex [he(1) left];
 ex [everyone [1 [tr(1) left]]];
-
-print document.render();
-

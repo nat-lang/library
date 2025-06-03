@@ -3,7 +3,7 @@ import prelude
 
 let S = TSet;
 
-const John, Mary, Fabian;
+sym John, Mary, Fabian;
 let human = {John, Mary, Fabian};
 
 dom e = {John, Mary, Fabian};
@@ -17,7 +17,7 @@ let meet = x y => (x,y) in Meet;
 
 let g = {};
 let PronounsAndTraces = (index: num) => g(index);
-let PredicateAbstraction = index expr => {
+let PredicateAbstraction = index expr => {}
 
 grammar.addRule(eta);
 

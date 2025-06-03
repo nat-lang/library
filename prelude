@@ -39,4 +39,5 @@ document.preamble = "
 let prefix ex = tree => {
   let typedTree = grammar.evaluate(tree);
   document.add(typedTree.tex());
+  return typedTree;
 };

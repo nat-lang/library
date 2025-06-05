@@ -41,3 +41,5 @@ let prefix ex = tree => {
   document.add(typedTree.tex());
   return typedTree;
 };
+
+let prefix render = tex => document.add(tex);

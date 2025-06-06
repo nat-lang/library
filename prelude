@@ -12,13 +12,9 @@ let grammar = CompositionSystem();
 
 // Define some basic composition rules.
 
-// The grammar will know to apply this rule to unary
-// children because it is a unary function.
-// let NonBranchingNodes = x => x;
-
-// Similarly, the grammar will know to apply this rule
-// to binary branching children because it is a binary function.
-// The pipe syntax '|' is used to define type driven application.
+// The grammar will know to apply this rule to binary branching 
+// children because it is a binary function. The pipe syntax '|'
+// is used to define type driven functions.
 let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication);

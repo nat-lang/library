@@ -1,11 +1,11 @@
 import prelude
 
-// the type of assignments.
-let a = num -> e;
-
 // the domain of individuals.
 sym Kilroy, Kiljoy;
 dom e = {Kilroy, Kiljoy};
+
+// the type of assignments.
+let a = num -> e;
 
 // equip the grammar with assignment sensitivity.
 let AssSensitiveFunctionApplication

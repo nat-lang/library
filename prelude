@@ -30,7 +30,7 @@ document.preamble = "
 \usepackage{gb4e}
 ";
 
-// Define a handy prefix function for (a) evaluating examples
+// Define a handy function for (a) evaluating examples
 // and (b) adding them to the latex document.
 let prefix ex = tree => {
   let typedTree = grammar.evaluate(tree);

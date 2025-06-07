@@ -20,7 +20,7 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 grammar.addRules(FunctionApplication);
 
 // Set the preamble for the global latex document.
-document.preamble = "
+document.preamble = tex"
 \documentclass{article}
 \usepackage{stmaryrd}
 \usepackage{amsmath}

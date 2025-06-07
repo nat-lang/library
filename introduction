@@ -1,0 +1,19 @@
+import ../prelude
+
+render tex"
+  \begin{exe} \ex
+    \[
+      \begin{forest}
+        [{$(n \to e) \to t$ \\ $\lambda g. g[1] \in Left$} [{$(n \to e) \to e$ \\ $\lambda g. g[1]$}] [{$(n \to e) \to e \to t$ \\ $\lambda g\lambda x. x \in Left$ \\ left}]]
+      \end{forest}
+    \]
+  \end{exe}
+  
+  \begin{exe} \ex
+    \[
+      \begin{forest}
+        [{$(n \to e) \to t$ \\ $\lambda g\forall x \in D_{e}. x \in Left$} [{$(n \to e) \to (e \to t) \to t$ \\ $\lambda g\lambda p\forall x \in D_{e}. p(x)$ \\ everyone}] [{$(n \to e) \to e \to t$ \\ $\lambda g\lambda x. x \in Left$} [{$n$ \\ 1}] [{$(n \to e) \to t$ \\ $\lambda g. g[1] \in Left$} [{$(n \to e) \to e$ \\ $\lambda g. g[1]$}] [{$(n \to e) \to e \to t$ \\ $\lambda g\lambda x. x \in Left$ \\ left}]]]] 
+      \end{forest}
+    \]
+  \end{exe}
+";

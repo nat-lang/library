@@ -34,9 +34,6 @@ document.preamble = "
 \usepackage{gb4e}
 
 \usepackage[colorlinks]{hyperref}
-\hypersetup{citecolor=DeepPink4}
-\hypersetup{linkcolor=DarkRed}
-\hypersetup{urlcolor=DarkBlue}
 \usepackage{cleveref}
 ";
 

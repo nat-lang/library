@@ -32,6 +32,12 @@ document.preamble = "
 \usepackage[linguistics]{forest}
 \usepackage{MnSymbol}
 \usepackage{gb4e}
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{citecolor=DeepPink4}
+\hypersetup{linkcolor=DarkRed}
+\hypersetup{urlcolor=DarkBlue}
+\usepackage{cleveref}
 ";
 
 // Define a handy prefix function for (a) evaluating examples

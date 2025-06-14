@@ -1,12 +1,20 @@
 use Heim&Kratzer1998
 
-let human = {Kilroy, Kiljoy};
+let Human = {Kilroy, Kiljoy};
 
-let eta: u -> {u} = a => ({a});
-let who: a -> (e -> {t}) -> {t} = g f => ({y | x in human, y in f(x)});
+let eta: u -> a -> {u} = e g => ({e(g)});
+let who: a -> (e -> {t}) -> {t} = g f => ({y | x in Human, y in f(x)});
 let did: a -> u -> u = g x => x;
 
 let Meet = {(Kilroy, Kiljoy), (Kiljoy, Kilroy)};
 let meet: a -> e -> e -> t = g x y => (x,y) in Meet;
+let K = (g: a) => Kiljoy;
 
-ex [who [1 [did [((g: a) => Kiljoy) [meet tr(1)]]]]];
+ex [who [1 [did [.eta K [meet tr(1)]]]]];
+
+let Linguist = {Kilroy};
+let a-ling = {x | x in Linguist};
+
+let bind: (a -> {u}) -> (u -> a -> {w}) -> a -> {w} = m f g => ({y | x in m(g), y in f(x)(g)});
+
+ex [[.bind a-ling] [1 [.eta K [meet tr(1)]]]];

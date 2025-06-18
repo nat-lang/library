@@ -26,6 +26,7 @@ grammar.addRules(FunctionApplication);
 // Set the preamble for the global latex document.
 document.preamble = "
 \documentclass{article}
+\usepackage[a5paper,margin=1in]{geometry}
 \usepackage{stmaryrd}
 \usepackage{amsmath}
 \usepackage{tikz}

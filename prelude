@@ -22,12 +22,16 @@ grammar.addRules(FunctionApplication);
 // Set the preamble for the global latex document.
 document.preamble = tex"
 \documentclass{article}
+\usepackage[a5paper,margin=1in]{geometry}
 \usepackage{stmaryrd}
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage[linguistics]{forest}
 \usepackage{MnSymbol}
 \usepackage{gb4e}
+
+\usepackage[colorlinks]{hyperref}
+\usepackage{cleveref}
 ";
 
 // Define a handy function for (a) evaluating examples
@@ -37,3 +41,5 @@ let prefix ex = tree => {
   document.add(typedTree.tex());
   return typedTree;
 };
+
+let prefix render = tex => document.add(tex);

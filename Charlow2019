@@ -1,24 +1,22 @@
+use Heim&Kratzer1998
 
-import prelude
+let Human = {Kilroy, Kiljoy};
 
-let S = TSet;
+let eta: u -> a -> {u} = e g => ({e(g)});
+let who: a -> (e -> {t}) -> {t} = g f => ({y | x in Human, y in f(x)});
+let did: a -> u -> u = g x => x;
 
-sym John, Mary, Fabian;
-let human = {John, Mary, Fabian};
+let Meet = {(Kilroy, Kiljoy), (Kiljoy, Kilroy)};
+let meet: a -> e -> e -> t = g x y => (x,y) in Meet;
+let K = (g: a) => Kiljoy;
 
-dom e = {John, Mary, Fabian};
+ex [who [1 [did [.eta K [meet tr(1)]]]]];
 
-let eta: u -> S(u) = a => ({a});
-let who: (e -> S(t)) -> S(t) = f p => for some (x in human) f(x)(p);
-let did = x => x;
+let Linguist = {Kilroy};
+let a-ling = {x | x in Linguist};
 
-let Meet = {(John, Mary), (Mary, John)};
-let meet = x y => (x,y) in Meet;
+let bind
+  : (a -> {u}) -> (u -> a -> {w}) -> a -> {w}
+  = m f g => ({y | x in m(g), y in f(x)(g)});
 
-let g = {};
-let PronounsAndTraces = (index: num) => g(index);
-let PredicateAbstraction = index expr => {}
-
-grammar.addRule(eta);
-
-ex [who [did [John [meet 1]]]];
+ex [[.bind a-ling] [1 [.eta K [meet tr(1)]]]];

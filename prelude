@@ -12,19 +12,15 @@ let grammar = CompositionSystem();
 
 // Define some basic composition rules.
 
-// The grammar will know to apply this rule to unary
-// children because it is a unary function.
-// let NonBranchingNodes = x => x;
-
-// Similarly, the grammar will know to apply this rule
-// to binary branching children because it is a binary function.
-// The pipe syntax '|' is used to define type driven application.
+// The grammar will know to apply this rule to binary branching 
+// children because it is a binary function. The pipe syntax '|'
+// is used to define type driven functions.
 let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication);
 
 // Set the preamble for the global latex document.
-document.preamble = "
+document.preamble = tex"
 \documentclass{article}
 \usepackage[a5paper,margin=1in]{geometry}
 \usepackage{stmaryrd}
@@ -38,7 +34,7 @@ document.preamble = "
 \usepackage{cleveref}
 ";
 
-// Define a handy prefix function for (a) evaluating examples
+// Define a handy function for (a) evaluating examples
 // and (b) adding them to the latex document.
 let prefix ex = tree => {
   let typedTree = grammar.evaluate(tree);

@@ -1,5 +1,6 @@
 use prelude
 
+// the domain of individuals.
 sym Kilroy, Kiljoy;
 dom e = {Kilroy, Kiljoy};
 
@@ -16,6 +17,7 @@ let PredicateAbstraction
 
 grammar.addRules(AssSensitiveFunctionApplication, PredicateAbstraction);
 
+// define some predicates and lexical entries.
 let pronoun: num -> (num -> e) -> e = n g => g[n];
 
 let Left = {Kilroy, Kiljoy};
@@ -26,6 +28,6 @@ let tr = pronoun;
 
 let everyone: a -> (e -> t) -> t = g p => for all (x in e) p(x); 
 
+// put it all together.
 ex [he(1) left];
 ex [everyone [1 [tr(1) left]]];
-

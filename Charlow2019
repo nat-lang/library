@@ -2,7 +2,7 @@ use Heim&Kratzer1998
 
 let Human = {Kilroy, Kiljoy};
 
-let eta: u -> a -> {u} = e g => ({e(g)});
+let eta: (a -> u) -> a -> {u} = e g => ({e(g)});
 let who: a -> (e -> {t}) -> {t} = g f => ({y | x in Human, y in f(x)});
 let did: a -> u -> u = g x => x;
 
@@ -10,13 +10,22 @@ let Meet = {(Kilroy, Kiljoy), (Kiljoy, Kilroy)};
 let meet: a -> e -> e -> t = g x y => (x,y) in Meet;
 let K = (g: a) => Kiljoy;
 
+// for charlow's basic derivations to work we need
+// a definition of predicate abstraction that swaps
+// x and g.
+let PredicateAbstraction'
+  = (n: num, f: a -> u) => (x g => f(g[n] = x))
+  | (f: a -> u, n: num) => (x g => f(g[n] = x));
+
+grammar.addRule(PredicateAbstraction');
+
 ex [who [1 [did [.eta K [meet tr(1)]]]]];
 
 let Linguist = {Kilroy};
-let a-ling = {x | x in Linguist};
+let a-ling: a -> {e} = g => ({x | x in Linguist});
 
 let bind
   : (a -> {u}) -> (u -> a -> {w}) -> a -> {w}
-  = m f g => ({y | x in m(g), y in f(x)(g)});
+  = m f g => ({y | z in m(g), y in f(z)(g)});
 
 ex [[.bind a-ling] [1 [.eta K [meet tr(1)]]]];

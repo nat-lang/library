@@ -1,14 +1,17 @@
-use Heim&Kratzer1998
+use grammar, ex, FunctionApplication, trace, a, e, t
+  from Heim&Kratzer1998
 
-let Human = {Kilroy, Kiljoy};
+sym Davidoff, James;
+
+let Human = {Davidoff, James};
 
 let eta: (a -> u) -> a -> {u} = e g => ({e(g)});
 let who: a -> (e -> {t}) -> {t} = g f => ({y | x in Human, y in f(x)});
 let did: a -> u -> u = g x => x;
 
-let Meet = {(Kilroy, Kiljoy), (Kiljoy, Kilroy)};
+let Meet = {(Davidoff, James), (James, Davidoff)};
 let meet: a -> e -> e -> t = g x y => (x,y) in Meet;
-let K = (g: a) => Kiljoy;
+let J = (g: a) => James;
 
 // for charlow's basic derivations to work we need
 // a definition of predicate abstraction that swaps
@@ -19,13 +22,13 @@ let PredicateAbstraction'
 
 grammar.addRule(PredicateAbstraction');
 
-ex [who [1 [did [.eta K [meet tr(1)]]]]];
+ex [who [1 [did [.eta J [meet trace(1)]]]]];
 
-let Linguist = {Kilroy};
+let Linguist = {Davidoff};
 let a-ling: a -> {e} = g => ({x | x in Linguist});
 
 let bind
   : (a -> {u}) -> (u -> a -> {w}) -> a -> {w}
   = m f g => ({y | z in m(g), y in f(z)(g)});
 
-ex [[.bind a-ling] [1 [.eta K [meet tr(1)]]]];
+ex [[.bind a-ling] [1 [.eta J [meet trace(1)]]]];

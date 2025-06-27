@@ -28,6 +28,8 @@ let tr = pronoun;
 
 let everyone: a -> (e -> t) -> t = g p => for all (x in e) p(x); 
 
+let f = () => {
 // put it all together.
 ex [he(1) left];
 ex [everyone [1 [tr(1) left]]];
+};

@@ -34,12 +34,12 @@ document.preamble = tex"
 \usepackage{cleveref}
 ";
 
-// Define a handy function for (a) evaluating examples
-// and (b) adding them to the latex document.
-let prefix ex = tree => {
-  let typedTree = grammar.evaluate(tree);
-  document.add(typedTree.tex());
-  return typedTree;
-};
+let examples = [];
+
+let prefix ex = examples.push;
+
+let main = Generator(
+  examples, ex => (x => x.tex()) . grammar.evaluate
+);
 
 let prefix render = tex => document.add(tex);

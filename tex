@@ -1,19 +1,16 @@
-use prelude
+// Set the preamble for the global latex document.
+document.preamble = tex"
+\documentclass{article}
+\usepackage[a5paper,margin=1in]{geometry}
+\usepackage{stmaryrd}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage[linguistics]{forest}
+\usepackage{MnSymbol}
+\usepackage{gb4e}
 
-render tex"
-  \begin{exe} \ex
-    \[
-      \begin{forest}
-        [{$(n \to e) \to t$ \\ $\lambda g. g[1] \in Left$} [{$(n \to e) \to e$ \\ $\lambda g. g[1]$}] [{$(n \to e) \to e \to t$ \\ $\lambda g\lambda x. x \in Left$ \\ left}]]
-      \end{forest}
-    \]
-  \end{exe}
-  
-  \begin{exe} \ex
-    \[
-      \begin{forest}
-        [{$(n \to e) \to t$ \\ $\lambda g\forall x \in D_{e}. x \in Left$} [{$(n \to e) \to (e \to t) \to t$ \\ $\lambda g\lambda p\forall x \in D_{e}. p(x)$ \\ everyone}] [{$(n \to e) \to e \to t$ \\ $\lambda g\lambda x. x \in Left$} [{$n$ \\ 1}] [{$(n \to e) \to t$ \\ $\lambda g. g[1] \in Left$} [{$(n \to e) \to e$ \\ $\lambda g. g[1]$}] [{$(n \to e) \to e \to t$ \\ $\lambda g\lambda x. x \in Left$ \\ left}]]]] 
-      \end{forest}
-    \]
-  \end{exe}
+\usepackage[colorlinks]{hyperref}
+\usepackage{cleveref}
 ";
+
+let prefix render = tex => document.add(tex);

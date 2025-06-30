@@ -38,8 +38,8 @@ let examples = [];
 
 let prefix ex = examples.push;
 
-let main = Generator(
-  examples, ex => (x => x.tex()) . grammar.evaluate
+let main = () => Generator(
+  examples, (x => x.tex()) . grammar.evaluate
 );
 
 let prefix render = tex => document.add(tex);

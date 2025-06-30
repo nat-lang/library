@@ -1,3 +1,4 @@
+use tex
 
 // Define the boolean domain.
 dom t = {true, false};
@@ -19,21 +20,6 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication);
 
-// Set the preamble for the global latex document.
-document.preamble = tex"
-\documentclass{article}
-\usepackage[a5paper,margin=1in]{geometry}
-\usepackage{stmaryrd}
-\usepackage{amsmath}
-\usepackage{tikz}
-\usepackage[linguistics]{forest}
-\usepackage{MnSymbol}
-\usepackage{gb4e}
-
-\usepackage[colorlinks]{hyperref}
-\usepackage{cleveref}
-";
-
 let examples = [];
 
 let prefix ex = examples.push;
@@ -41,5 +27,3 @@ let prefix ex = examples.push;
 let main = () => Generator(
   examples, (x => x.tex()) . grammar.evaluate
 );
-
-let prefix render = tex => document.add(tex);

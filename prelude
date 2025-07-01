@@ -24,6 +24,24 @@ let examples = [];
 
 let prefix ex = examples.push;
 
+let render = tree => {
+  let document = TexDocument();
+  document.preamble = tex"
+    \documentclass{standalone}
+    \usepackage{stmaryrd}
+    \usepackage{amsmath}
+    \usepackage{tikz}
+    \usepackage[linguistics]{forest}
+    \usepackage{MnSymbol}
+    \usepackage{gb4e}
+
+    \usepackage[colorlinks]{hyperref}
+    \usepackage{cleveref}
+  ";
+  document.add(tree.tex());
+  return document.render();
+};
+
 let main = () => Generator(
-  examples, (x => x.tex()) . grammar.evaluate
+  examples, render . grammar.evaluate
 );

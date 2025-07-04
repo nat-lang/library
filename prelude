@@ -24,24 +24,6 @@ let examples = [];
 
 let prefix ex = examples.push . StandaloneTexDocument;
 
-let  = tree => {
-  let document = TexDocument();
-  document.preamble = tex"
-    \documentclass{standalone}
-    \usepackage{stmaryrd}
-    \usepackage{amsmath}
-    \usepackage{tikz}
-    \usepackage[linguistics]{forest}
-    \usepackage{MnSymbol}
-    \usepackage{gb4e}
-
-    \usepackage[colorlinks]{hyperref}
-    \usepackage{cleveref}
-  ";
-  document.add(tree.tex());
-  return document;
-};
-
 let main = () => Generator(
   examples, serialize . grammar.evaluate
 );

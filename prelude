@@ -22,9 +22,9 @@ grammar.addRules(FunctionApplication);
 
 let examples = [];
 
-let prefix ex = examples.push;
+let prefix ex = examples.push . StandaloneTexDocument;
 
-let render = tree => {
+let  = tree => {
   let document = TexDocument();
   document.preamble = tex"
     \documentclass{standalone}
@@ -39,9 +39,9 @@ let render = tree => {
     \usepackage{cleveref}
   ";
   document.add(tree.tex());
-  return document.render();
+  return document;
 };
 
 let main = () => Generator(
-  examples, render . grammar.evaluate
+  examples, serialize . grammar.evaluate
 );

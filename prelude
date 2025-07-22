@@ -1,4 +1,3 @@
-use tex
 
 // Define the boolean domain.
 dom t = {true, false};
@@ -22,8 +21,8 @@ grammar.addRules(FunctionApplication);
 
 let examples = [];
 
-let prefix ex = examples.push . StandaloneTexDocument;
+let prefix ex = examples.push;
 
 let main = () => Generator(
-  examples, serialize . grammar.evaluate
+  examples, serialize . StandaloneTexDoc . (x => x.tex()) . grammar.evaluate
 );

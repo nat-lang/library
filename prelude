@@ -19,27 +19,10 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication);
 
-// Set the preamble for the global latex document.
-document.preamble = tex"
-\documentclass{article}
-\usepackage[a5paper,margin=1in]{geometry}
-\usepackage{stmaryrd}
-\usepackage{amsmath}
-\usepackage{tikz}
-\usepackage[linguistics]{forest}
-\usepackage{MnSymbol}
-\usepackage{gb4e}
+let examples = [];
 
-\usepackage[colorlinks]{hyperref}
-\usepackage{cleveref}
-";
+let prefix ex = examples.push;
 
-// Define a handy function for (a) evaluating examples
-// and (b) adding them to the latex document.
-let prefix ex = tree => {
-  let typedTree = grammar.evaluate(tree);
-  document.add(typedTree.tex());
-  return typedTree;
-};
-
-let prefix render = tex => document.add(tex);
+let main = () => Generator(
+  examples, serialize . StandaloneTexDoc . (x => x.tex()) . grammar.evaluate
+);

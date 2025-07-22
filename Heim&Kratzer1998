@@ -24,11 +24,10 @@ let Left = {Kilroy, Kiljoy};
 let left: a -> e -> t = g x => x in Left;
 
 let he = pronoun;
-let tr = pronoun;
+let trace = pronoun;
 
 let everyone: a -> (e -> t) -> t = g p => for all (x in e) p(x); 
 
 // put it all together.
 ex [he(1) left];
-ex [everyone [1 [tr(1) left]]];
-
+ex [everyone [1 [trace(1) left]]];

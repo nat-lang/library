@@ -1,4 +1,4 @@
-use ex, main from prelude
+use ex, main, examples from prelude
 use grammar, FunctionApplication, trace, a, e, t
   from Heim&Kratzer1998
 

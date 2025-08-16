@@ -1,4 +1,5 @@
-use grammar, ex, FunctionApplication, trace, a, e, t
+use ex from prelude
+use grammar, FunctionApplication, trace, a, e, t
   from Heim&Kratzer1998
 
 sym Davidoff, James;

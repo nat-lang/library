@@ -19,10 +19,10 @@ let FunctionApplication = (a: x -> y, b: x) => a(b) | (a: x, b: x -> y) => b(a);
 
 grammar.addRules(FunctionApplication);
 
-let examples = [];
+let output = [];
 
-let prefix ex = examples.push . StandaloneTexDoc . (x => x.tex()) . grammar.evaluate;
+let prefix ex = output.push . StandaloneTexDoc . (x => x.tex()) . grammar.evaluate;
 
 let main = () => Generator(
-  examples, serialize
+  output, serialize
 );

@@ -21,8 +21,8 @@ grammar.addRules(FunctionApplication);
 
 let examples = [];
 
-let prefix ex = examples.push;
+let prefix ex = examples.push . StandaloneTexDoc . (x => x.tex()) . grammar.evaluate;
 
 let main = () => Generator(
-  examples, serialize . StandaloneTexDoc . (x => x.tex()) . grammar.evaluate
+  examples, serialize
 );

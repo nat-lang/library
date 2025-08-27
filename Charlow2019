@@ -1,4 +1,4 @@
-use grammar, ex, FunctionApplication, trace, a, e, t
+use grammar, ex, FunctionApplication, trace, a, e, t, main
   from Heim&Kratzer1998
 
 sym Davidoff, James;
